@@ -1,0 +1,159 @@
+@startuml
+package vehicles{
+class Vehicle{
+#plateNumber:int
+#make:String
+#model:String
+#yearProduced:int
+
++Vehicle()
++Vehicle(make:String, model:String, yearProduced:int)
++Vehicle(vehicle:Vehicle)
++setPlateNumber(num:int):void
++setMake(make:String):void
++setModel(model:String):void
++setYearProduced(yearProduced:int):void
++getPlateNumber():int
++getMake():String
++getModel():String
++getYearProduced():int
++toString():String
++equals(obj:Object):boolean
++copyVehicles(obj:Object):Vehicle[]
+}
+
+Vehicle <|-- Truck
+Vehicle <|-- Car
+
+class Truck{
+#capacity:int
++Truck()
++Truck(capacity:int, make:String, model:String, yearProduced:int)
++Truck(truck:Truck)
++getCapacity():int
++setCapacity(capacity:int):void
++toString():String
++equals(obj:Object):boolean
++getLargestTruck(truck:Truck[]):Truck
+}
+
+Truck <|-- ElectricTruck
+Truck <|-- DieselTruck
+
+class ElectricTruck{
+#range:int
++ELECTRICTRUCKPLATE:String
+#eTruckPlateNum:int
++ElectricTruck()
++ElectricTruck(range:int, capacity:int, make:String, model:String, yearProduced:int)
++ElectricTruck(eTruck:ElectricTruck)
++getRange():int
++setRange(range:int):void
++equals(obj:Object):boolean
++toString():String
+}
+
+class DieselTruck{
+-fuelCapacity:int
++DIESELTRUCKPLATE:String
+#dTruckPlateNum:int
++DieselTruck()
++DieselTruck(fuelCapacity:int, capacity:int, make:String, model:String, yearProduced:int)
++DieselTruck(dTruck:DieselTruck)
++getFuelCapacity():int
++setFuelCapacity(fuelCapacity:int):void
++equals(obj:Object):boolean
++toString():String
+}
+
+class Car{
+#maxPassengers:int
++Car()
++Car(maxPassengers:int, make:String, model:String, yearProduced:int)
++Car(car:Car)
++getMaxPassengers():int
++setMaxPassengers(max:int):void
++equals(obj:Object):boolean
++toString():String
+}
+
+Car <|-- ElectricCar
+Car <|-- GasCar
+
+class ElectricCar{
+#range:int
++ELECTRICCARPLATE:String
+#eCarPlateNum:int
++ElectricCar()
++ElectricCar(range:ing, maxPassengers:int, make:String, model:String, yearProduced:int)
++ElectricCar(eCar:ElectricCar)
++getRange():int
++setRange(range:int):void
++toString():String
++equals(obj:Object):boolean
+}
+
+class GasCar{
++GASCARPLATE:String
+#gCarPlateNum:int
++GasCar()
++GasCar(maxPassengers:int, make:String, model:String, yearProduced:int)
++toString():String
++equals(obj:Object):boolean
+}
+}
+package clients{
+class Client{
+-name:String
+-leased:Vehicle[]
++Client()
++Client(name:String)
++Client(client:Client)
++setName(name:String):void
++getName():String
++getVehicles():Vehicle[]
++getVehicle(index:ind):Vehicle
++addVehicle(vehicle:Vehicle):void
++removeVehicle(index:int):Vehicle
++toString():String
++equals(obj:Object):boolean
+}
+}
+
+package main{
+class RoyalRentals{
+~userChoice:int
+~eCars:ElectricCar[]
+~gCars:GasCar[]
+~eTrucks:ElectricTruck[]
+~dTrucks:DieselTruck[]
+~clients:Client[]
+~deepCopyETruck:Vehicle[]
++main(args:String[]):void
+-vehicleManagement():void
+-addVehicle():void
+-deleteVehicle():void
+-updateVehicleInfo():void
+-additionalOptions():void
+-clientManagement():void
+-addClient():void
+-editClient():void
+-deleteClient():void
+-leasingOperations():void
+-leaseVehicle():void
+-returnVehicle():void
+-showAllVehicleLeasedByClient():void
+-showAllLeasedVehicles():void
+-removeEcar(index:int):void
+-removeGCar(index:int):void
+-removeETruck(index:int):void
+-removeDTruck(index:int):void
+-listVehicles():void
+-listElectricCars():void
+-listGasCars():void
+-listElectricTrucks():void
+-listDieselTrucks():void
+-preDefined():void
+}
+}
+@enduml
